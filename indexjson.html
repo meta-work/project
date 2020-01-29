@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>Weather</title>
+   <script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+</head>
+
+    
+    
+    <script>
+    
+       // setInterval(function(){        
+    $.getJSON('http://api.openweathermap.org/data/2.5/forecast?id=1835848&APPID=b1682c5bcfc7d4e87270646c047bc01e&units=metric',function(data){
+      //  alert(data.city.name);
+       var $minTemp = data.list[0].main.temp_min;
+        var $maxTemp = data.list[0].main.temp_max;
+        var $cTemp = data.list[0].main.temp;
+        var $cDate =  data.list[0].dt_txt;
+        // var $Temp = data.list[0].main.temp_min;
+        
+        //A.appendTo(B)  B요소 내용의 뒤에 A를 추가
+        //A.append(B)   A요소 내용의 뒤에 B를 추가
+        //A.prependTo(B) B요소의 내용의 앞에 A를 추가
+        //A.prepend(B)   A요소 내용의 앞에 B를 추가
+        
+    $('.clowtemp').append($minTemp);
+         $('.ctemp').append($cTemp);
+         $('h2').prepend($cDate);
+         $('.chightemp').append($maxTemp);
+      // },1000);
+        
+     
+    
+          if(50<$minTemp){
+           $('.chightemp').append("GOOD");
+    } else if (20>$minTemp){
+    $('.chightemp').append("Bad");
+    }
+      });    
+                  
+    </script>
+ 
+    
+
+<body>
+    <h1>weather api</h1>
+    <h2> - 날씨 예보 </h2>
+    <div class="ctemp">현재 온도 :</div>
+    <div class="clowtemp">최저 온도 : </div>
+    <div class="chightemp">최고 온도 :</div>
+    <div class="cicon">아이콘 :</div>
+<!-- HTML -->
+</body>
+</html>
